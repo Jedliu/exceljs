@@ -386,24 +386,24 @@ export type CellValue =
 	| CellFormulaValue | CellSharedFormulaValue;
 
 
-	export interface CommentMargins {
-		insetmode: 'auto' | 'custom';
-		inset: Number[];
-	}
+export interface CommentMargins {
+	insetmode: 'auto' | 'custom';
+	inset: Number[];
+}
 
-	export interface CommentProtection {
-		locked: 'True' | 'False';
-		lockText: 'True' | 'False';
-	}
+export interface CommentProtection {
+	locked: 'True' | 'False';
+	lockText: 'True' | 'False';
+}
 
-	export type CommentEditAs = 'twoCells' | 'oneCells' | 'absolute';
+export type CommentEditAs = 'twoCells' | 'oneCells' | 'absolute';
 
-	export interface Comment {
-		texts?: RichText[];
-		margins?: Partial<CommentMargins>;
-		protection?: Partial<CommentProtection>;
-		editAs?: CommentEditAs;
-	}
+export interface Comment {
+	texts?: RichText[];
+	margins?: Partial<CommentMargins>;
+	protection?: Partial<CommentProtection>;
+	editAs?: CommentEditAs;
+}
 
 export interface CellModel {
 	address: Address;
@@ -1080,7 +1080,7 @@ export type ConditionalFormattingRule = ExpressionRuleType | CellIsRuleType | To
 	| ContainsTextRuleType | TimePeriodRuleType | DataBarRuleType;
 
 
-export type RowValues = CellValue[] | { [key: string]: CellValue } | undefined | null; 
+export type RowValues = CellValue[] | { [key: string]: CellValue } | undefined | null;
 
 export interface ConditionalFormattingOptions {
 	ref: string;
@@ -1687,19 +1687,19 @@ export interface WorkbookModel {
 }
 
 export class Workbook {
-    category: string;
-    company: string;
+	category: string;
+	company: string;
 	creator: string;
-    description: string;
-    keywords: string;
+	description: string;
+	keywords: string;
 	lastModifiedBy: string;
 	created: Date;
-    manager: string;
+	manager: string;
 	modified: Date;
 	lastPrinted: Date;
 	properties: WorkbookProperties;
 	subject: string;
-    title: string;
+	title: string;
 
 	/**
 	 * Workbook calculation Properties
@@ -2014,4 +2014,65 @@ export namespace stream {
 			getColumn(c: number): Column;
 		}
 	}
+}
+
+export interface DocRangeModel {
+	top: number;
+	left: number;
+	bottom: number;
+	right: number;
+	sheetName: string;
+}
+
+export class DocRange {
+	model: DocRangeModel;
+
+	setTLBR(
+		top?: number,
+		left?: number,
+		bottom?: number,
+		right?: number,
+		name?: string
+	): void;
+
+	decode(argv: any): void;
+
+	top(): number;
+	top(top: number): void;
+
+	left(): number;
+	left(top: number): void;
+
+	bottom(): number;
+	bottom(top: number): void;
+
+	right(): number;
+	right(top: number): void;
+
+	sheetName(): number;
+	sheetName(top: number): void;
+
+	expand(top: number, left: number, bottom: number, right: number): void;
+
+	expandRow(row: any): void;
+
+	expandToAddress(addressString: string): void;
+
+	tl: number;
+
+	br: number;
+
+	range(): string;
+
+	shortRange(): number;
+
+	count(): number;
+
+	toString(): string;
+
+	intersects(range: DocRange): boolean;
+
+	contains(range: DocRange): boolean;
+
+	forEachAddress(callback: (address: string) => void): void;
 }
