@@ -8,6 +8,10 @@ Read, manipulate and write spreadsheet data and styles to XLSX and JSON.
 
 Reverse engineered from Excel spreadsheet files as a project.
 
+# Patch Description
+
+This is a patch with export of lib/doc/range as DocRange which is used in xlsx-renderer package and add typing definition in index.d.ts
+
 # Translations
 
 * [中文文档](README_zh.md)
@@ -239,7 +243,7 @@ try {
     }
     return new RegExp(pattern, flags);
   };
-  global.RegExp.prototype = RegExp.prototype;
+  global.RegExp.prototype = RegExp;
 }
 ```
 
@@ -2631,13 +2635,10 @@ An Excel formula for calculating values on the fly.
 
 Note that ExcelJS cannot process the formula to generate a result, it must be supplied.
 
-Note that function semantic names must be in English and the separator must be a comma.
-
 E.g.
 
 ```javascript
 worksheet.getCell('A3').value = { formula: 'A1+A2', result: 7 };
-worksheet.getCell('A3').value = { formula: 'SUM(A1,A2)', result: 7 };
 ```
 
 Cells also support convenience getters to access the formula and result:

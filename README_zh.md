@@ -8,6 +8,10 @@
 
 一个 Excel 电子表格文件逆向工程项目。
 
+# 补丁说明
+
+这个是一个补丁包，导出了lib/doc/range为DocRange，用于在xlsx-renderer包中调用使用，并在index.d.ts中添加了类型定义
+
 # 安装
 
 ```shell
@@ -196,7 +200,7 @@ try {
     }
     return new RegExp(pattern, flags);
   };
-  global.RegExp.prototype = RegExp.prototype;
+  global.RegExp.prototype = RegExp;
 }
 ```
 
